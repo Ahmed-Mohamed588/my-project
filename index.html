@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ahmed Mohamed - Portfolio</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #1a1a1a;
+            color: #ffffff;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        header {
+            background-color: #000000;
+            padding: 20px 0;
+        }
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: flex-end;
+        }
+        nav ul li {
+            margin-left: 20px;
+        }
+        nav ul li a {
+            color: #ffffff;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        nav ul li a:hover {
+            color: #ffd700;
+        }
+        .banner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 50px 0;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 1s forwards;
+            margin-bottom: 60px;
+        }
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .banner-text {
+            flex: 2;
+        }
+        .banner-image {
+            flex: 1;
+            text-align: right;
+        }
+        .banner-image img {
+            max-width: 200px;
+            height: auto;
+            border-radius: 50%;
+        }
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        .highlight {
+            color: #ffd700;
+        }
+        .btn {
+            display: inline-block;
+            background-color: #ffd700;
+            color: #000000;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s, transform 0.3s;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .btn:hover {
+            background-color: #ffea00;
+            transform: translateY(-2px);
+        }
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .progress-section {
+            margin: 60px 0;
+            text-align: center;
+        }
+        .progress-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap; /* Allow wrapping */
+            gap: 20px; /* Space between circles */
+        }
+        .circular-progress {
+            position: relative;
+            width: 128px;
+            height: 128px;
+        }
+        .circular-progress svg {
+            transform: rotate(-90deg);
+        }
+        .project {
+            background-color: #2a2a2a;
+            border-radius: 10px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: transform 0.3s;
+        }
+        .project:hover {
+            transform: scale(1.02);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+        .project-image img {
+            width: 100%;
+            height: auto;
+        }
+        .project-info {
+            flex: 1;
+            padding: 20px;
+        }
+        .project-title {
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+        footer {
+            background-color: #000000;
+            padding: 40px 0;
+            text-align: center;
+            margin-top: 60px;
+        }
+        .contact-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        .social-btn {
+            background-color: #333333;
+            color: #ffffff;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            display: inline-flex;
+            align-items: center;
+            transition: background-color 0.3s;
+        }
+        .social-btn:hover {
+            background-color: #444444;
+        }
+        .developer {
+            font-size: 0.8em;
+            color: #999999;
+            margin-top: 20px;
+        }
+        .progress-label {
+            position: absolute;
+            top: 40%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            font-size: 0.8em;
+        }
+        .percentage {
+            position: absolute;
+            bottom: 10%;
+            left: 50%;
+            transform: translate(-50%, 0);
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section id="home" class="banner">
+            <div class="container">
+                <div class="banner-text">
+                    <h1>Ahmed Mohamed</h1>
+                    <p class="highlight">Web Developer</p>
+                    <a href="/path/to/your/file.pdf" class="btn" download>Download My Cv</a>
+                </div>
+                <div class="banner-image">
+                    <img src="https://d.top4top.io/p_3217y5vdy1.jpeg" alt="Ahmed Mohamed">
+                </div>
+            </div>
+        </section>
+
+        <section id="about">
+            <div class="container">
+                <h2 class="section-title">About Me</h2>
+                <p>I am a front-end web developer with more than 3 years of experience. Not only that, I can also develop WordPress sites and development is not only about development. I also develop templates and add-ons and am good at editing site files.</p>
+            </div>
+        </section>
+
+        <!-- Progress Section -->
+        <section class="progress-section">
+            <h2 class="section-title">Progress Charts</h2>
+            <div class="progress-container" id="progress-container">
+                <!-- Progress Charts will be generated here by JavaScript -->
+            </div>
+        </section>
+
+        <section id="projects">
+            <div class="container">
+                <h2 class="section-title">My Projects</h2>
+                <div class="projects">
+                    <div class="project">
+                        <div class="project-image">
+                            <img src="https://j.top4top.io/p_3217yiopr1.png" alt="Project 1">
+                        </div>
+                        <div class="project-info">
+                            <h3 class="project-title">متجر الكتروني </h3>
+                            <p>An online store built from Wordprees and using html+css.</p>
+                        </div>
+                    </div>
+                    <div class="project">
+                        <div class="project-image">
+                            <img src="https://l.top4top.io/p_3217rrcby1.jpeg" alt="Project 2">
+                        </div>
+                        <div class="project-info">
+                            <h3 class="project-title">شات لتعلم اللغات بالai</h3>
+                            <p>Language learning website designed using HTML, CSS and JavaScript.</p>
+                        </div>
+                    </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer id="contact">
+        <div class="container">
+            <h2>Contact Me</h2>
+            <div class="contact-buttons">
+                <a href="https://wa.me/201551281310" class="social-btn">
+                    WhatsApp
+                </a>
+                <a href="https://www.facebook.com/ahmed.awego?mibextid=ZbWKwL" class="social-btn">
+                    facebook
+                </a>
+            </div>
+        </div>
+        <div class="developer">Developed by Ahmed Mohamed</div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Progress data
+        const charts = [
+            { percentage: 90, color: '#FF6B6B', languages: 'HTML, CSS' },
+            { percentage: 80, color: '#4ECDC4', languages: 'JavaScript' },
+            { percentage: 85, color: '#45B7D1', languages: 'Solve problems' },
+            { percentage: 60, color: '#FFA07A', languages: 'Node.js' },
+            { percentage: 40, color: '#98D8C8', languages: 'PHP' },
+        ];
+
+        const progressContainer = document.getElementById('progress-container');
+
+        charts.forEach((chart, index) => {
+            const circularProgress = document.createElement('div');
+            circularProgress.className = 'circular-progress';
+
+            circularProgress.innerHTML = `
+                <svg viewBox="0 0 100 100">
+                    <circle class="text-gray-200" stroke-width="10" cx="50" cy="50" r="40" fill="transparent" />
+                    <circle class="stroke-current" stroke-width="10" stroke-linecap="round" cx="50" cy="50" r="40" fill="transparent" style="stroke: ${chart.color}; stroke-dasharray: 0 100;" />
+                </svg>
+                <div class="progress-label">${chart.languages}</div>
+                <div class="percentage">0%</div>
+            `;
+
+            progressContainer.appendChild(circularProgress);
+
+            // Animation effect
+            let progress = 0;
+            const interval = setInterval(() => {
+                if (progress <= chart.percentage) {
+                    circularProgress.querySelector('circle:nth-child(2)').style.strokeDasharray = `${progress} 100`;
+                    circularProgress.querySelector('.percentage').innerText = `${progress}%`;
+                    progress++;
+                } else {
+                    clearInterval(interval);
+                }
+            }, (index + 1) * 20); // Adjust speed as needed
+        });
+
+        // Fade-in effect for projects
+        const projects = document.querySelectorAll('.project');
+        projects.forEach((project, index) => {
+            setTimeout(() => {
+                project.style.opacity = 1;
+                project.style.transform = 'translateY(0)';
+            }, index * 200); // staggered effect
+        });
+    </script>
+</body>
+</html>
