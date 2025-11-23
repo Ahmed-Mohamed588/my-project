@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - SentraOS</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #0ea5e9;
+            --primary-light: #38bdf8;
+            --primary-dark: #0284c7;
+            --accent: #06b6d4;
+            --gray-50: #f8fafc;
+            --gray-100: #f1f5f9;
+            --gray-200: #e2e8f0;
+            --gray-400: #94a3b8;
+            --gray-500: #64748b;
+            --gray-700: #334155;
+            --gray-800: #1e293b;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #f43f5e;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background: linear-gradient(135deg, var(--gray-100) 0%, var(--gray-200) 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            padding: 40px 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        .bg-shapes {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .bg-shapes .shape {
+            position: absolute;
+            border-radius: 50%;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        .bg-shapes .shape-1 {
+            width: 500px; height: 500px;
+            background: radial-gradient(circle, rgba(14, 165, 233, 0.12) 0%, transparent 70%);
+            top: -150px; right: -150px;
+        }
+
+        .bg-shapes .shape-2 {
+            width: 400px; height: 400px;
+            background: radial-gradient(circle, rgba(6, 182, 212, 0.1) 0%, transparent 70%);
+            bottom: -100px; left: -100px;
+            animation-delay: -5s;
+        }
+
+        .bg-shapes .shape-3 {
+            width: 300px; height: 300px;
+            background: radial-gradient(circle, rgba(14, 165, 233, 0.08) 0%, transparent 70%);
+            top: 40%; left: 5%;
+            animation-delay: -10s;
+        }
+
+        .bg-shapes .shape-4 {
+            width: 250px; height: 250px;
+            background: radial-gradient(circle, rgba(6, 182, 212, 0.08) 0%, transparent 70%);
+            bottom: 20%; right: 5%;
+            animation-delay: -15s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            25% { transform: translate(20px, -20px) scale(1.05); }
+            50% { transform: translate(40px, 20px) scale(1); }
+            75% { transform: translate(-20px, 30px) scale(0.95); }
+        }
+
+        .register-container {
+            max-width: 480px;
+            width: 100%;
+            position: relative;
+            z-index: 1;
+        }
+
+        .register-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 24px;
+            box-shadow: 
+                0 4px 6px rgba(0, 0, 0, 0.02),
+                0 10px 40px rgba(14, 165, 233, 0.12),
+                0 0 0 1px rgba(255, 255, 255, 0.8);
+            padding: 44px 40px;
+            animation: slideUp 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(40px) scale(0.95); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        .register-header {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+
+        .register-header .logo {
+            width: 80px; height: 80px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+            font-size: 32px;
+            color: white;
+            box-shadow: 0 10px 30px rgba(14, 165, 233, 0.35);
+            animation: pulse-glow 3s ease-in-out infinite;
+            position: relative;
+        }
+
+        .register-header .logo::after {
+            content: '';
+            position: absolute;
+            inset: -3px;
+            border-radius: 22px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            z-index: -1;
+            opacity: 0.3;
+            filter: blur(10px);
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 10px 30px rgba(14, 165, 233, 0.35); }
+            50% { box-shadow: 0 15px 40px rgba(14, 165, 233, 0.5); }
+        }
+
+        .register-header h2 {
+            color: var(--gray-800);
+            font-weight: 700;
+            margin-bottom: 8px;
+            font-size: 26px;
+        }
+
+        .register-header p {
+            color: var(--gray-500);
+            font-size: 14px;
+        }
+
+        .input-group {
+            position: relative;
+            margin-bottom: 18px;
+        }
+
+        .form-control {
+            height: 54px;
+            border-radius: 14px;
+            border: 2px solid var(--gray-200);
+            padding: 0 50px;
+            font-size: 15px;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.8);
+            color: var(--gray-800);
+            width: 100%;
+        }
+
+        .form-control::placeholder { color: var(--gray-400); }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(14, 165, 233, 0.1);
+            background: white;
+        }
+
+        .input-icon {
+            position: absolute;
+            left: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--gray-400);
+            z-index: 10;
+            font-size: 18px;
+            transition: color 0.3s ease;
+        }
+
+        .input-group:focus-within .input-icon { color: var(--primary); }
+
+        .password-toggle {
+            position: absolute;
+            right: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: var(--gray-400);
+            z-index: 10;
+            transition: all 0.3s ease;
+            padding: 5px;
+        }
+
+        .password-toggle:hover {
+            color: var(--primary);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .password-strength {
+            height: 6px;
+            border-radius: 3px;
+            background: var(--gray-200);
+            margin-top: -12px;
+            margin-bottom: 18px;
+            overflow: hidden;
+        }
+
+        .password-strength-bar {
+            height: 100%;
+            width: 0;
+            transition: all 0.4s ease;
+            border-radius: 3px;
+        }
+
+        .strength-weak { width: 33%; background: linear-gradient(90deg, var(--danger), #fb7185); }
+        .strength-medium { width: 66%; background: linear-gradient(90deg, var(--warning), #fbbf24); }
+        .strength-strong { width: 100%; background: linear-gradient(90deg, var(--success), #34d399); }
+
+        .strength-label {
+            font-size: 12px;
+            margin-top: -14px;
+            margin-bottom: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .strength-label.weak { color: var(--danger); }
+        .strength-label.medium { color: var(--warning); }
+        .strength-label.strong { color: var(--success); }
+
+        .btn-register {
+            height: 54px;
+            border-radius: 14px;
+            font-weight: 600;
+            font-size: 16px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            border: none;
+            color: white;
+            transition: all 0.3s ease;
+            width: 100%;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            margin-top: 8px;
+        }
+
+        .btn-register::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .btn-register:hover::before { left: 100%; }
+
+        .btn-register:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(14, 165, 233, 0.4);
+        }
+
+        .btn-register:active { transform: translateY(-1px); }
+
+        .login-link {
+            text-align: center;
+            margin-top: 24px;
+            color: var(--gray-500);
+            font-size: 14px;
+        }
+
+        .login-link a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .login-link a:hover {
+            color: var(--primary-dark);
+            text-decoration: underline;
+        }
+
+        .alert {
+            border-radius: 12px;
+            border: none;
+            margin-bottom: 24px;
+            padding: 14px 18px;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            animation: shake 0.5s ease-in-out;
+        }
+
+        .alert-danger {
+            background: rgba(244, 63, 94, 0.1);
+            color: #e11d48;
+        }
+
+        .alert-success {
+            background: rgba(16, 185, 129, 0.1);
+            color: #059669;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            20%, 60% { transform: translateX(-5px); }
+            40%, 80% { transform: translateX(5px); }
+        }
+
+        .decoration {
+            position: absolute;
+            width: 6px; height: 6px;
+            background: var(--primary);
+            border-radius: 50%;
+            opacity: 0.3;
+        }
+
+        .decoration-1 { top: 20px; right: 30px; animation: twinkle 2s infinite; }
+        .decoration-2 { bottom: 40px; left: 25px; animation: twinkle 2s infinite 0.5s; }
+        .decoration-3 { top: 50%; right: 20px; animation: twinkle 2s infinite 1s; }
+        .decoration-4 { top: 30%; left: 20px; animation: twinkle 2s infinite 1.5s; }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 0.8; transform: scale(1.5); }
+        }
+
+        .input-validation {
+            position: absolute;
+            right: 50px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 14px;
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .input-validation.show { opacity: 1; }
+        .input-validation.valid { color: var(--success); }
+        .input-validation.invalid { color: var(--danger); }
+    </style>
+</head>
+<body>
+    <div class="bg-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+        <div class="shape shape-4"></div>
+    </div>
+
+    <div class="register-container">
+        <div class="register-card">
+            <div class="decoration decoration-1"></div>
+            <div class="decoration decoration-2"></div>
+            <div class="decoration decoration-3"></div>
+            <div class="decoration decoration-4"></div>
+
+            <div class="register-header">
+                <div class="logo">
+                    <i class="fas fa-user-plus"></i>
+                </div>
+                <h2>Create Account</h2>
+                <p>Register to start monitoring your infrastructure</p>
+            </div>
+
+            {% if error %}
+            <div class="alert alert-danger" role="alert">
+                <i class="fas fa-exclamation-circle"></i> {{ error }}
+            </div>
+            {% endif %}
+
+            <form method="POST" action="{{ url_for('register') }}" id="registerForm">
+                <div class="input-group">
+                    <i class="fas fa-user input-icon"></i>
+                    <input type="text" class="form-control" name="username" placeholder="Username" required minlength="3" autofocus>
+                </div>
+
+                <div class="input-group">
+                    <i class="fas fa-envelope input-icon"></i>
+                    <input type="email" class="form-control" name="email" placeholder="Email Address" required>
+                </div>
+
+                <div class="input-group">
+                    <i class="fas fa-id-card input-icon"></i>
+                    <input type="text" class="form-control" name="full_name" placeholder="Full Name" required>
+                </div>
+
+                <div class="input-group">
+                    <i class="fas fa-lock input-icon"></i>
+                    <input type="password" class="form-control" name="password" id="password" placeholder="Password" required minlength="6">
+                    <i class="fas fa-eye password-toggle" id="togglePassword"></i>
+                </div>
+                <div class="password-strength">
+                    <div class="password-strength-bar" id="strengthBar"></div>
+                </div>
+                <div class="strength-label" id="strengthLabel"></div>
+
+                <div class="input-group">
+                    <i class="fas fa-lock input-icon"></i>
+                    <input type="password" class="form-control" name="confirm_password" id="confirm_password" placeholder="Confirm Password" required minlength="6">
+                    <i class="fas fa-check input-validation" id="matchIndicator"></i>
+                    <i class="fas fa-eye password-toggle" id="toggleConfirmPassword"></i>
+                </div>
+
+                <button type="submit" class="btn-register">
+                    <i class="fas fa-user-plus"></i> Create Account
+                </button>
+            </form>
+
+            <div class="login-link">
+                Already have an account? <a href="{{ url_for('login') }}">Login here</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const togglePass = (toggleId, inputId) => {
+            document.getElementById(toggleId).addEventListener('click', function() {
+                const input = document.getElementById(inputId);
+                const isPassword = input.type === 'password';
+                input.type = isPassword ? 'text' : 'password';
+                this.classList.toggle('fa-eye', !isPassword);
+                this.classList.toggle('fa-eye-slash', isPassword);
+            });
+        };
+        togglePass('togglePassword', 'password');
+        togglePass('toggleConfirmPassword', 'confirm_password');
+
+        document.getElementById('password').addEventListener('input', function() {
+            const pwd = this.value;
+            const bar = document.getElementById('strengthBar');
+            const label = document.getElementById('strengthLabel');
+            let s = 0;
+            if (pwd.length >= 6) s++;
+            if (pwd.length >= 10) s++;
+            if (/[a-z]/.test(pwd) && /[A-Z]/.test(pwd)) s++;
+            if (/\d/.test(pwd)) s++;
+            if (/[^a-zA-Z0-9]/.test(pwd)) s++;
+
+            bar.className = 'password-strength-bar';
+            label.className = 'strength-label';
+            if (pwd.length === 0) {
+                label.textContent = '';
+            } else if (s <= 2) {
+                bar.classList.add('strength-weak');
+                label.classList.add('weak');
+                label.textContent = 'Weak password';
+            } else if (s <= 3) {
+                bar.classList.add('strength-medium');
+                label.classList.add('medium');
+                label.textContent = 'Medium strength';
+            } else {
+                bar.classList.add('strength-strong');
+                label.classList.add('strong');
+                label.textContent = 'Strong password';
+            }
+            checkMatch();
+        });
+
+        function checkMatch() {
+            const pwd = document.getElementById('password').value;
+            const confirm = document.getElementById('confirm_password').value;
+            const indicator = document.getElementById('matchIndicator');
+            if (confirm.length > 0) {
+                indicator.classList.add('show');
+                if (pwd === confirm) {
+                    indicator.classList.remove('invalid', 'fa-times');
+                    indicator.classList.add('valid', 'fa-check');
+                } else {
+                    indicator.classList.remove('valid', 'fa-check');
+                    indicator.classList.add('invalid', 'fa-times');
+                }
+            } else {
+                indicator.classList.remove('show');
+            }
+        }
+        document.getElementById('confirm_password').addEventListener('input', checkMatch);
+
+        document.getElementById('registerForm').addEventListener('submit', function(e) {
+            const pwd = document.getElementById('password').value;
+            const confirm = document.getElementById('confirm_password').value;
+            if (pwd !== confirm) {
+                e.preventDefault();
+                alert('Passwords do not match!');
+            }
+        });
+
+        setTimeout(() => {
+            document.querySelectorAll('.alert').forEach(alert => {
+                alert.style.transition = 'all 0.5s ease';
+                alert.style.opacity = '0';
+                alert.style.transform = 'translateY(-10px)';
+                setTimeout(() => alert.remove(), 500);
+            });
+        }, 5000);
+    </script>
+</body>
+</html>
